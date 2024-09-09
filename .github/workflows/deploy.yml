@@ -10,8 +10,8 @@ jobs:
   test:
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.faylx.mongodb.net
-      MONGODB_USERNAME: nevendimac
-      MONGODB_PASSWORD: aKK8yWubQYithjrH
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }} #povlaci variable iz github settings -> secrets
       PORT: 8080 #koju god vrijednost želimo
     environment: testing
     runs-on: ubuntu-latest
