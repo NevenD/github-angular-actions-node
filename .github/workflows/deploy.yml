@@ -3,17 +3,17 @@ on:
   push:
     branches:
       - master
-      - dev
+      - dev #dodali smo rule da na test-neven environment trigerira samo action ako je commita na master
 env:
   MONGODB_DB_NAME: gha-demo-neven
 jobs:
   test:
+    environment: test-neven #uz custom environment vežemo secrets, ideja je da staging, production and testing imaju vlastite secrete
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.faylx.mongodb.net
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }} #povlaci variable iz github settings -> secrets
       PORT: 8080 #koju god vrijednost želimo
-    environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
